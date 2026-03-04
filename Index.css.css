@@ -1,0 +1,786 @@
+/* ============================================
+   Alex Tankpreise – Apple-Inspired Design
+   ============================================ */
+
+/* Google Font: SF-alike via Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    /* Apple-style system palette – light base */
+    --bg: #f2f2f7;
+    --bg-card: rgba(255, 255, 255, 0.72);
+    --bg-card-solid: #ffffff;
+    --bg-secondary: rgba(118, 118, 128, 0.12);
+    --bg-input: rgba(118, 118, 128, 0.1);
+    --bg-inset: #f2f2f7;
+
+    --text-primary: #1c1c1e;
+    --text-secondary: #3c3c43;
+    --text-tertiary: #6c6c70;
+    --text-quaternary: #aeaeb2;
+
+    --separator: rgba(60, 60, 67, 0.13);
+
+    /* Accent – Apple Blue */
+    --accent: #007aff;
+    --accent-light: rgba(0, 122, 255, 0.15);
+    --accent-dark: #0062cc;
+
+    /* Traffic-light price colors */
+    --price-cheap: #34c759;
+    --price-cheap-bg: rgba(52, 199, 89, 0.12);
+    --price-mid: #ff9500;
+    --price-mid-bg: rgba(255, 149, 0, 0.12);
+    --price-expensive: #ff3b30;
+    --price-expensive-bg: rgba(255, 59, 48, 0.12);
+
+    --status-open: #34c759;
+    --status-closed: #ff3b30;
+    --gold: #ff9f0a;
+    --gold-bg: rgba(255, 159, 10, 0.1);
+
+    /* Layout */
+    --container: 860px;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 20px;
+    --r-xl: 28px;
+
+    /* Shadows – Apple style */
+    --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-btn: 0 2px 8px rgba(0, 122, 255, 0.35);
+
+    --transition: 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, 'Inter', BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---- Hero / Header ---- */
+.hero {
+    background: linear-gradient(160deg, #ffffff 0%, #e8f0fe 100%);
+    border-bottom: 1px solid var(--separator);
+    padding: 3.5rem 1.5rem 2.5rem;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2.6rem;
+    line-height: 1;
+}
+
+.logo h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.tagline {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ---- Container ---- */
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+}
+
+/* ---- Search Card ---- */
+.search-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--r-xl);
+    padding: 1.8rem;
+    margin: 1.5rem 0 1.5rem;
+    box-shadow: var(--shadow-card);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.input-group label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.label-icon {
+    margin-right: 2px;
+}
+
+.input-group input[type="text"],
+.input-group select {
+    background: var(--bg-input);
+    border: 1px solid transparent;
+    border-radius: var(--r-md);
+    padding: 0.72rem 1rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    outline: none;
+    width: 100%;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.input-group input[type="text"]:focus,
+.input-group select:focus {
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 0 0 4px var(--accent-light);
+}
+
+.input-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236c6c70' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.95rem center;
+    padding-right: 2.5rem;
+}
+
+/* Radius slider */
+.radius-group input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: var(--bg-secondary);
+    border-radius: 3px;
+    outline: none;
+    width: 100%;
+    margin-top: 0.3rem;
+    cursor: pointer;
+}
+
+.radius-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--accent);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+    transition: transform var(--transition);
+}
+
+.radius-group input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.radius-group input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--accent);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Search Button */
+.search-btn {
+    width: 100%;
+    padding: 0.88rem;
+    font-family: inherit;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--r-md);
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    letter-spacing: -0.01em;
+}
+
+.search-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.45);
+}
+
+.search-btn:active {
+    transform: scale(0.98);
+}
+
+.search-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* API Key Section */
+.api-key-section {
+    margin-top: 1.1rem;
+    border-top: 1px solid var(--separator);
+    padding-top: 1rem;
+}
+
+.api-key-section summary {
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    transition: color var(--transition);
+}
+
+.api-key-section summary:hover {
+    color: var(--accent);
+}
+
+.api-key-content {
+    margin-top: 0.8rem;
+}
+
+.api-key-content p {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-bottom: 0.55rem;
+    line-height: 1.5;
+}
+
+.api-key-content input {
+    background: var(--bg-input);
+    border: 1px solid transparent;
+    border-radius: var(--r-sm);
+    padding: 0.65rem 0.9rem;
+    color: var(--text-primary);
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 0.82rem;
+    width: 100%;
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.api-key-content input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-light);
+}
+
+/* ---- Status messages ---- */
+.status-message {
+    padding: 0.9rem 1.2rem;
+    border-radius: var(--r-md);
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid;
+    animation: fadeUp 0.25s ease;
+    line-height: 1.5;
+    font-weight: 450;
+}
+
+.status-message.error {
+    background: var(--price-expensive-bg);
+    border-color: rgba(255, 59, 48, 0.25);
+    color: #c0392b;
+}
+
+.status-message.warning {
+    background: var(--price-mid-bg);
+    border-color: rgba(255, 149, 0, 0.25);
+    color: #a05c00;
+}
+
+.status-message.info {
+    background: var(--accent-light);
+    border-color: rgba(0, 122, 255, 0.2);
+    color: var(--accent-dark);
+}
+
+/* ---- Results info ---- */
+.results-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--separator);
+}
+
+#resultsCount {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ---- Results Grid ---- */
+.results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* ---- Station Card ---- */
+.station-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--r-xl);
+    padding: 0;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition), box-shadow var(--transition);
+    animation: fadeUp 0.4s ease both;
+    overflow: hidden;
+    position: relative;
+}
+
+.station-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Top strip for cheapest */
+.station-card.cheapest {
+    border-color: rgba(255, 159, 10, 0.5);
+}
+
+.station-card.cheapest::before {
+    content: '🏆 Günstigste';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--gold), #ff9500);
+    color: white;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.85rem;
+    border-bottom-left-radius: var(--r-sm);
+    z-index: 2;
+}
+
+.station-card.closed-station {
+    opacity: 0.5;
+}
+
+/* Card body */
+.station-card-body {
+    padding: 1.3rem 1.5rem 1.1rem;
+}
+
+.station-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.station-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.station-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.1rem;
+}
+
+.station-brand {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Price pill */
+.station-price-box {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.price-pill {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border-radius: 40px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.price-pill.price-cheap {
+    background: var(--price-cheap-bg);
+    color: var(--price-cheap);
+}
+
+.price-pill.price-mid {
+    background: var(--price-mid-bg);
+    color: var(--price-mid);
+}
+
+.price-pill.price-expensive {
+    background: var(--price-expensive-bg);
+    color: var(--price-expensive);
+}
+
+.price-pill.price-none {
+    background: var(--bg-secondary);
+    color: var(--text-quaternary);
+}
+
+.station-price-label {
+    font-size: 0.68rem;
+    color: var(--text-quaternary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+    text-align: right;
+}
+
+/* Details row */
+.station-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.2rem;
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    margin-top: 0.4rem;
+}
+
+.station-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 0.22rem 0.65rem;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.badge-open {
+    background: var(--price-cheap-bg);
+    color: #1a8c3a;
+}
+
+.badge-closed {
+    background: var(--price-expensive-bg);
+    color: #c0392b;
+}
+
+/* Multi-fuel chips */
+.station-all-prices {
+    display: flex;
+    gap: 0.6rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--separator);
+    background: var(--bg-inset);
+}
+
+.price-chip {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-card-solid);
+    border-radius: var(--r-sm);
+    padding: 0.55rem 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.price-chip-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--text-quaternary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.2rem;
+}
+
+.price-chip-value {
+    font-size: 0.97rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.price-chip-value.price-cheap {
+    color: var(--price-cheap);
+}
+
+.price-chip-value.price-mid {
+    color: var(--price-mid);
+}
+
+.price-chip-value.price-expensive {
+    color: var(--price-expensive);
+}
+
+/* ---- Price chart section ---- */
+.chart-section {
+    padding: 0 1.5rem 1.2rem;
+    border-top: 1px solid var(--separator);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.9rem 0 0.6rem;
+}
+
+.chart-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.best-time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--price-cheap-bg);
+    color: #1a8c3a;
+    border-radius: 20px;
+    padding: 0.22rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.chart-canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 80px;
+}
+
+.chart-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.chart-axis-label {
+    font-size: 0.62rem;
+    color: var(--text-quaternary);
+    font-weight: 500;
+}
+
+.chart-note {
+    font-size: 0.7rem;
+    color: var(--text-quaternary);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* ---- Empty State ---- */
+.empty-state {
+    text-align: center;
+    padding: 5rem 1.5rem;
+    color: var(--text-tertiary);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.35;
+}
+
+.empty-state h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+}
+
+.empty-state p {
+    font-size: 0.9rem;
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.55;
+}
+
+/* ---- Footer ---- */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.74rem;
+    color: var(--text-quaternary);
+    border-top: 1px solid var(--separator);
+}
+
+/* ---- Animations ---- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.station-card:nth-child(1) {
+    animation-delay: 0.00s;
+}
+
+.station-card:nth-child(2) {
+    animation-delay: 0.04s;
+}
+
+.station-card:nth-child(3) {
+    animation-delay: 0.08s;
+}
+
+.station-card:nth-child(4) {
+    animation-delay: 0.12s;
+}
+
+.station-card:nth-child(5) {
+    animation-delay: 0.16s;
+}
+
+.station-card:nth-child(6) {
+    animation-delay: 0.20s;
+}
+
+.station-card:nth-child(7) {
+    animation-delay: 0.24s;
+}
+
+.station-card:nth-child(8) {
+    animation-delay: 0.28s;
+}
+
+.station-card:nth-child(9) {
+    animation-delay: 0.32s;
+}
+
+.station-card:nth-child(10) {
+    animation-delay: 0.36s;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 2rem 1rem 1.5rem;
+    }
+
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+
+    .search-card {
+        padding: 1.2rem;
+        border-radius: var(--r-lg);
+    }
+
+    .station-name {
+        font-size: 0.95rem;
+    }
+
+    .price-pill {
+        font-size: 1rem;
+    }
+
+    .station-header {
+        flex-wrap: wrap;
+    }
+
+    .station-all-prices {
+        flex-wrap: wrap;
+    }
+}

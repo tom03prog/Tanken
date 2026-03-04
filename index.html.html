@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Finde die günstigsten Tankstellen in deiner Nähe – Echtzeit-Spritpreise für E5, E10 und Diesel.">
+    <title>Alex Tankpreise – Günstig Tanken in Deutschland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="logo">
+                <span class="logo-icon">⛽</span>
+                <h1>Alex <span class="accent">Tankpreise</span></h1>
+            </div>
+            <p class="tagline">Finde die günstigsten Spritpreise in deiner Nähe – in Echtzeit.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Search -->
+        <section class="search-card" id="searchCard">
+            <form id="searchForm" autocomplete="off">
+                <div class="form-row">
+                    <div class="input-group location-group">
+                        <label for="locationInput"><span class="label-icon">📍</span> Ort oder Postleitzahl</label>
+                        <input type="text" id="locationInput" placeholder="z.B. München oder 80331" required>
+                    </div>
+                    <div class="input-group fuel-group">
+                        <label for="fuelType"><span class="label-icon">🛢️</span> Kraftstoffart</label>
+                        <select id="fuelType">
+                            <option value="e5">Super E5</option>
+                            <option value="e10" selected>Super E10</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="all">Alle anzeigen</option>
+                        </select>
+                    </div>
+                    <div class="input-group radius-group">
+                        <label for="radiusSlider"><span class="label-icon">📏</span> Umkreis: <span
+                                id="radiusValue">5</span> km</label>
+                        <input type="range" id="radiusSlider" min="1" max="25" value="5" step="1">
+                    </div>
+                </div>
+                <button type="submit" class="search-btn" id="searchBtn">
+                    <span class="btn-text">Tankstellen suchen</span>
+                    <span class="btn-loading" style="display:none;"><span class="spinner"></span> Suche läuft…</span>
+                </button>
+            </form>
+
+            <details class="api-key-section">
+                <summary>⚙️ Eigenen API-Key verwenden</summary>
+                <div class="api-key-content">
+                    <p>
+                        Demo-Key liefert Testdaten. Echten Key kostenlos auf
+                        <a href="https://creativecommons.tankerkoenig.de" target="_blank"
+                            rel="noopener">tankerkoenig.de</a> beantragen.
+                    </p>
+                    <input type="text" id="apiKeyInput" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+                </div>
+            </details>
+        </section>
+
+        <!-- Status -->
+        <div id="statusMessage" class="status-message" style="display:none;"></div>
+
+        <!-- Results info -->
+        <div id="resultsInfo" class="results-info" style="display:none;">
+            <span id="resultsCount"></span>
+            <span>Sortiert nach Preis</span>
+        </div>
+
+        <!-- Results -->
+        <div id="resultsContainer" class="results-grid"></div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon">⛽</div>
+            <h2>Starte deine Suche</h2>
+            <p>Gib deinen Ort oder deine PLZ ein und finde sofort die günstigsten Tankstellen.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        Preisdaten: <a href="https://creativecommons.tankerkoenig.de" target="_blank" rel="noopener">Tankerkönig</a> (CC
+        BY 4.0) ·
+        Geodaten: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
